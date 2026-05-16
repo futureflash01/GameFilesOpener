@@ -60,7 +60,7 @@ This is why it works perfectly even if you have 5 different Steam libraries.
 
 ## License
 
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
+This project is licensed under the **MIT License** — see [LICENSE](https://github.com/futureflash01/SteamGameFolderOpener/blob/master/LICENSE.txt) for details.
 
 You are free to use, modify, and distribute this code, as long as you keep the original copyright notice.
 
