@@ -68,7 +68,7 @@ You are free to use, modify, and distribute this code, as long as you keep the o
 
 ## Author
 
-Made with ❤️ by **FutureFlash** [](https://youtube.com/@FutureFlash)
+Made with ❤️ by [**FutureFlash**](https://youtube.com/@FutureFlash)
 
 If this tool helped you, feel free to star the repo or drop a comment!
 
