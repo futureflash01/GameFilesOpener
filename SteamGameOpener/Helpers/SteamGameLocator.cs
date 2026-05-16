@@ -36,8 +36,7 @@ namespace SteamGameOpener.Helpers
 
                 else
                 {
-                    //MessageBox.Show($"Game {appId} not found or not installed.", "Steam Game Opener", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    MessageBox.Show(gamePath + "\r\n;;;;\r\n");
+                    MessageBox.Show($"Game {appId} not found or not installed.", "Steam Game Opener", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
 

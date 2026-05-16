@@ -53,7 +53,7 @@
             descriptionLabel.Name = "descriptionLabel";
             descriptionLabel.Size = new Size(540, 60);
             descriptionLabel.TabIndex = 1;
-            descriptionLabel.Text = "This program simply adds a 'Open Game Steam Files' button when you\r\nright click any Steam game's desktop shortcut";
+            descriptionLabel.Text = "This program simply adds a 'Open Steam Game Files' button when you\r\nright click any Steam game's desktop shortcut";
             descriptionLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // actionButton
