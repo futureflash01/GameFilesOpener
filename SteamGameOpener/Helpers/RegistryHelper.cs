@@ -5,6 +5,8 @@ namespace SteamGameOpener.Helpers
 {
     public static class RegistryHelper
     {
+        // The names and values used in this class are crucial, as that's the only way Windows recognizes them as valid context menu items.
+        // Changing any of these values will result in the context menu item not appearing at all.
         public static string MenuName => "SteamGameOpener";
         public static string MenuDisplayText => "Open Steam Game Files";
 
@@ -21,11 +23,12 @@ namespace SteamGameOpener.Helpers
                 key.SetValue("", MenuDisplayText);
                 key.SetValue("Icon", $"\"{exePath}\",0");
                 // The MUIVerb, or, the Multilingual User Interface Verb, is a Windows registry entry that defines the display name of a custom context menu item.
+                // This is another crucial value that can't be changed. It's the only way Windows will recognize it as a valid key.
                 key.SetValue("MUIVerb", MenuDisplayText);
             }
 
-            // The "command" registry key is what executes when the context menu item is clicked.
-            // Since Steam desktop shortcuts are '.url' files and not an actual desktop shortcut, we need to pass in the URL of the game as an argument to our application
+            // The "command" registry key is what actually executes when the context menu item is clicked.
+            // Since Steam desktop shortcuts are '.url' files and not actual desktop shortcuts ('.lnk' files), we need to pass in the URL of the game as an argument to our application
             using (var cmd = Registry.CurrentUser.CreateSubKey(GetInstallKey() + @"\command"))
             {
                 cmd.SetValue("", $"\"{exePath}\" \"%1\"");

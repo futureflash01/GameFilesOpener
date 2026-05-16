@@ -38,7 +38,7 @@
             // 
             // titleLabel
             // 
-            titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             titleLabel.Location = new Point(12, 21);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(540, 53);
@@ -51,9 +51,9 @@
             descriptionLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             descriptionLabel.Location = new Point(12, 74);
             descriptionLabel.Name = "descriptionLabel";
-            descriptionLabel.Size = new Size(540, 49);
+            descriptionLabel.Size = new Size(540, 60);
             descriptionLabel.TabIndex = 1;
-            descriptionLabel.Text = "This adds a 'Open Steam Files' context menu when you right-click\r\na game installed from Steam";
+            descriptionLabel.Text = "This program simply adds a 'Open Game Steam Files' button when you\r\nright click any Steam game's desktop shortcut";
             descriptionLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // actionButton
@@ -106,7 +106,7 @@
             MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Steam Game Opener";
+            Text = "Steam Game Folder Opener";
             Load += MainForm_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -10,6 +10,7 @@ namespace SteamGameOpener
 {
     public partial class MainForm : Form
     {
+        // This is the path where the program's EXE will be stored. It's in the Local AppData (%LOCALAPPDATA%) folder, so it won't require admin privileges to install or uninstall.
         private readonly string ApplicationPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SteamGameOpener");
         private readonly string EXEPath;
 
@@ -21,7 +22,7 @@ namespace SteamGameOpener
 
         private void CheckInstallStatus()
         {
-            // This instance is created here to ensure that the registry is read every time we check the status, rather than relying on a cached value sotred in the Singleton instance
+            // This boolean is declared here to ensure that the registry is read every time we check the status, rather than relying on a cached value sotred in the Singleton instance
             bool isInstalled = RegistryHelper.IsInstalled();
 
             actionButton.Text = isInstalled ? "Uninstall" : "Install";
@@ -31,6 +32,7 @@ namespace SteamGameOpener
 
         private void Install()
         {
+            // This method is pretty self-explanatory. It creates the necessary folders, copies the EXE to the AppData/Local (%LOCALAPPDATA%) folder, then registers the context menu item in the registry.
             try
             {
                 Directory.CreateDirectory(ApplicationPath);
@@ -58,6 +60,8 @@ namespace SteamGameOpener
 
         private void Uninstall()
         {
+            // Unregistering the context menu before deleting the files, just in case something goes wrong during the process.
+            // This way, the user won't have a broken context menu item that does nothing when clicked.
             try
             {
                 RegistryHelper.Unregister();
@@ -87,6 +91,8 @@ namespace SteamGameOpener
 
         private void actionButton_Click(object sender, EventArgs e)
         {
+            // Very stupid and lazy way handle install/uninstall logic, but it works so I'm just gonna keep it.
+            // And plus, the CheckInstallStatus() method does 90% of the work anyway.
             if (actionButton.Text == "Install")
             {
                 Install();
@@ -107,6 +113,8 @@ namespace SteamGameOpener
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Could I have cleared the status label in the designer? Yes.
+            // But did I? No. So deal with it.
             statusLabel.Text = "";
             CheckInstallStatus();
         }
