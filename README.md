@@ -1,8 +1,9 @@
 # Steam Game Folder Opener
 
-When you right-click any Steam game shortcut on your desktop and clicking **"Open Steam Game Files"** , it opens the actual game folder. So no more digging through `steamapps/common/` or multiple library folders.
+This program adds a **"Open Steam Game Files"**, button when you right click a Steam game's desktop shortcut.
 
-Perfect for Steam users who hate manually navigating to their game files, such as myself.
+It opens the actual game folder, so there is no more digging through `steamapps/common/` or multiple library folders.
+It's perfect for Steam users who hate manually navigating to their game files, such as myself.
 
 ### Features
 - Adds a clean **"Open Steam Game Files"** option to the right-click menu on any Steam game's desktop shortcut
