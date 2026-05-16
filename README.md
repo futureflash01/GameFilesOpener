@@ -1,4 +1,4 @@
-# Steam Game Opener
+# Steam Game Folder Opener
 
 When you right-click any Steam game shortcut on your desktop and clicking **"Open Steam Game Files"** , it opens the actual game folder. So no more digging through `steamapps/common/` or multiple library folders.
 
