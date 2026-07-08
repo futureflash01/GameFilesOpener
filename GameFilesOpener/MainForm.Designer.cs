@@ -1,4 +1,4 @@
-﻿namespace SteamGameOpener
+﻿namespace GameFilesOpener
 {
     partial class MainForm
     {
@@ -34,27 +34,29 @@
             actionButton = new Button();
             statusLabel = new Label();
             madeByLabel = new Label();
+            versionLabel = new Label();
+            currentSupportLabel = new Label();
             SuspendLayout();
             // 
             // titleLabel
             // 
             titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            titleLabel.Location = new Point(12, 21);
+            titleLabel.Location = new Point(12, 16);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(540, 53);
             titleLabel.TabIndex = 0;
-            titleLabel.Text = "Steam Game Folder Opener";
+            titleLabel.Text = "Game Files Opener";
             titleLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // descriptionLabel
             // 
             descriptionLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            descriptionLabel.Location = new Point(12, 74);
+            descriptionLabel.Location = new Point(12, 69);
             descriptionLabel.Name = "descriptionLabel";
-            descriptionLabel.Size = new Size(540, 60);
+            descriptionLabel.Size = new Size(540, 66);
             descriptionLabel.TabIndex = 1;
-            descriptionLabel.Text = "This program simply adds a 'Open Steam Game Files' button when you\r\nright click any Steam game's desktop shortcut";
-            descriptionLabel.TextAlign = ContentAlignment.MiddleCenter;
+            descriptionLabel.Text = "This program simply adds a 'Open Game Files' button when you\r\nright click any game's desktop shortcut. This works for many\r\ngames across different launchers installed any where on your computer.";
+            descriptionLabel.TextAlign = ContentAlignment.TopCenter;
             // 
             // actionButton
             // 
@@ -70,7 +72,7 @@
             // 
             // statusLabel
             // 
-            statusLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            statusLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             statusLabel.Location = new Point(40, 273);
             statusLabel.Name = "statusLabel";
             statusLabel.Size = new Size(480, 102);
@@ -91,14 +93,37 @@
             madeByLabel.Text = "Made by FutureFlash";
             madeByLabel.Click += madeByLabel_Click;
             // 
+            // versionLabel
+            // 
+            versionLabel.AutoSize = true;
+            versionLabel.ForeColor = SystemColors.ControlDark;
+            versionLabel.Location = new Point(12, 375);
+            versionLabel.Name = "versionLabel";
+            versionLabel.Size = new Size(28, 15);
+            versionLabel.TabIndex = 5;
+            versionLabel.Text = "v1.1";
+            // 
+            // currentSupportLabel
+            // 
+            currentSupportLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            currentSupportLabel.ForeColor = Color.CadetBlue;
+            currentSupportLabel.Location = new Point(12, 136);
+            currentSupportLabel.Name = "currentSupportLabel";
+            currentSupportLabel.Size = new Size(540, 27);
+            currentSupportLabel.TabIndex = 1;
+            currentSupportLabel.Text = "Currently Supported: Steam, Epic Games, Amazon Games, Xbox, and GOG";
+            currentSupportLabel.TextAlign = ContentAlignment.TopCenter;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(564, 399);
+            Controls.Add(versionLabel);
             Controls.Add(madeByLabel);
             Controls.Add(statusLabel);
             Controls.Add(actionButton);
+            Controls.Add(currentSupportLabel);
             Controls.Add(descriptionLabel);
             Controls.Add(titleLabel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -106,7 +131,7 @@
             MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Steam Game Folder Opener";
+            Text = "Game Files Opener";
             Load += MainForm_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -119,5 +144,7 @@
         private Button actionButton;
         private Label statusLabel;
         private Label madeByLabel;
+        private Label versionLabel;
+        private Label currentSupportLabel;
     }
 }

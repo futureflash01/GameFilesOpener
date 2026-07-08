@@ -2,5 +2,5 @@
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
   </Folder>
-  <Project Path="SteamGameOpener/SteamGameOpener.csproj" />
+  <Project Path="GameFilesOpener/GameFilesOpener.csproj" />
 </Solution>

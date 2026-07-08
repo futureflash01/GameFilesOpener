@@ -1,23 +1,24 @@
-using SteamGameOpener.Helpers;
+using GameFilesOpener.Helpers;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Media;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SteamGameOpener
+namespace GameFilesOpener
 {
     public partial class MainForm : Form
     {
         // This is the path where the program's EXE will be stored. It's in the Local AppData (%LOCALAPPDATA%) folder, so it won't require admin privileges to install or uninstall.
-        private readonly string ApplicationPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SteamGameOpener");
+        private readonly string ApplicationPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GameFilesOpener");
         private readonly string EXEPath;
 
         public MainForm()
         {
             InitializeComponent();
-            EXEPath = Path.Combine(ApplicationPath, "SteamGameOpener.exe");
+            EXEPath = Path.Combine(ApplicationPath, "GameFilesOpener.exe");
         }
 
         private void CheckInstallStatus()
@@ -32,24 +33,33 @@ namespace SteamGameOpener
 
         private void Install()
         {
-            // This method is pretty self-explanatory. It creates the necessary folders, copies the EXE to the AppData/Local (%LOCALAPPDATA%) folder, then registers the context menu item in the registry.
             try
             {
-                Directory.CreateDirectory(ApplicationPath);
-                string currentPath = Application.ExecutablePath;
-
-                if (!currentPath.Equals(EXEPath, StringComparison.OrdinalIgnoreCase))
+                // Create the LocalAppData directory if it doesn't exist
+                if (!Directory.Exists(ApplicationPath))
                 {
-                    File.Copy(currentPath, EXEPath, true);
+                    Directory.CreateDirectory(ApplicationPath);
                 }
 
+                // Copy the main '.exe' file to the LocalAppData folder
+                string currentExe = Process.GetCurrentProcess().MainModule.FileName;
+                File.Copy(currentExe, EXEPath, true);
+
+                // Extract the embedded SQLite DLL and the 'Microsoft.Data.Sqlite' NuGet package's main DLL file into that same folder
+                // This part is only used for the Amazon Games launcher, as it uses an SQLite database to store information about the game library
+                string sqliteMicrosoftDataPath = Path.Combine(ApplicationPath, "Microsoft.Data.Sqlite.dll");
+                string sqliteMainPath = Path.Combine(ApplicationPath, "e_sqlite3.dll");
+
+                File.WriteAllBytes(sqliteMicrosoftDataPath, Properties.Resources.Microsoft_Data_Sqlite);
+                File.WriteAllBytes(sqliteMainPath, Properties.Resources.e_sqlite3);
+
+                // Register the context menus
                 RegistryHelper.Register(EXEPath);
 
                 statusLabel.ForeColor = Color.ForestGreen;
-                statusLabel.Text = "Installed successfully! Right-click any Steam desktop shortcut and click 'Open Steam Game Files'";
+                statusLabel.Text = "Installation complete! Context menus are ready. You can safely delete this downloaded file, or keep it to use as an uninstaller.";
                 SystemSounds.Beep.Play();
             }
-
             catch (Exception ex)
             {
                 statusLabel.ForeColor = Color.IndianRed;
@@ -60,10 +70,10 @@ namespace SteamGameOpener
 
         private void Uninstall()
         {
-            // Unregistering the context menu before deleting the files, just in case something goes wrong during the process.
-            // This way, the user won't have a broken context menu item that does nothing when clicked.
             try
             {
+                // Unregistering the context menu before deleting the files, just in case something goes wrong during the process.
+                // This way, the user won't have a broken context menu item that does nothing when clicked.
                 RegistryHelper.Unregister();
 
                 if (File.Exists(EXEPath))
@@ -77,7 +87,7 @@ namespace SteamGameOpener
                 }
 
                 statusLabel.ForeColor = Color.ForestGreen;
-                statusLabel.Text = "Uninstalled successfully! All the program's files have been deleted.";
+                statusLabel.Text = "Uninstalled successfully! All files and context menus have been deleted and unregistered!";
                 SystemSounds.Beep.Play();
             }
 

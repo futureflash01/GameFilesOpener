@@ -1,8 +1,9 @@
-using SteamGameOpener.Helpers;
+// Program.cs
+using GameFilesOpener.Helpers;
 using System;
 using System.Windows.Forms;
 
-namespace SteamGameOpener
+namespace GameFilesOpener
 {
     internal static class Program
     {
@@ -12,9 +13,10 @@ namespace SteamGameOpener
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if (args.Length > 0 && args[0].EndsWith(".url", StringComparison.OrdinalIgnoreCase))
+            if (args.Length > 0 && (args[0].EndsWith(".url", StringComparison.OrdinalIgnoreCase) || args[0].EndsWith(".lnk", StringComparison.OrdinalIgnoreCase)))
             {
-                SteamGameLocator.OpenGameFiles(args[0]);
+                // Let the new GameLocator figure out what to do with the shortcut
+                GameLocator.HandleShortcut(args[0]);
                 return;
             }
 
