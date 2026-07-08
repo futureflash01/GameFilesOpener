@@ -11,7 +11,7 @@ namespace GameFilesOpener.Helpers
 
         public string GetGamePath(ShortcutInfo info)
         {
-            // Epic Games is the most annoying one to deal with. It's tedious and could theoritically take the longest, deedipng on how many games are installed.
+            // Epic Games is the most annoying one to deal with. It's tedious and could theoritically take the longest, depending on how many games are installed.
             // But basically here is what a shortcut looks like. In this case, the Fall Guys shortcut: 'com.epicgames.launcher://apps/50118b7f954e450f8823df1614b24e80%3A38ec4849ea4f4de6aa7b6fb0f2d278e1%3A0a2d9f6403244d12969e11da6713137b?action=launch&silent=true'
             // Anything ast the 'com.epicgames.launcher://apps/' and up until the first '%3A' character is the Game ID. Which in this case would be '50118b7f954e450f8823df1614b24e80'
             var match = Regex.Match(info.Content, @"apps/(.*?)%3A", RegexOptions.IgnoreCase);
