@@ -30,7 +30,7 @@ namespace GameFilesOpener.Helpers
             }
 
             // Query the database for the InstallDirectory
-            // 'InstallDirectory' is a column in the 'DbSet' table containing, well... of the game. We cross-reference it with the 'Id' column, which contains the GameID we extracted earlier and voila! Game path retrieved!
+            // 'InstallDirectory' is a column in the 'DbSet' table containing, well... the installation directory of the game. We cross-reference it with the 'Id' column, which contains the GameID we extracted earlier and voila! Game path retrieved!
             using (var connection = new SqliteConnection($"Data Source={dbPath}"))
             {
                 connection.Open();
